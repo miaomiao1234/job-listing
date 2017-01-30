@@ -1,11 +1,4 @@
 class Admin::JobsController < ApplicationController
-  def require_is_admin
-    if !current_user.admin?
-      flash[:alert] = 'You are not admin'
-      redirect_to root_path
-    end
-  end
-
   before_filter :authenticate_user!, only: [:new, :create, :update, :edit, :destroy]
   before_filter :require_is_admin
    def show
@@ -51,12 +44,7 @@ class Admin::JobsController < ApplicationController
      redirect_to admin_jobs_path
    end
 
-   def require_is_admin
-    if current_user.email != 'ml@m.com'
-      flash[:alert] = 'You are not admin'
-      redirect_to root_path
-    end
-  end
+   
 
 
    private
